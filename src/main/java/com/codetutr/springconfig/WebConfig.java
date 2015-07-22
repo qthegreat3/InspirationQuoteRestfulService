@@ -5,6 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.apache.commons.dbcp.BasicDataSource;
+
 
 @Configuration
 @EnableWebMvc
@@ -18,5 +20,13 @@ public class WebConfig {
         resolver.setPrefix("/WEB-INF/view/");
         resolver.setSuffix(".jsp");
         return resolver;
+    }
+    
+    @Bean
+    public BasicDataSource springDataSource(){
+    	BasicDataSource dataSource = new BasicDataSource();
+    	dataSource.driverClassName("com.mysql.jdbc.Driver");    	
+    	dataSource.setUrl("jdbc:mysql@localhost:1521");
+    	dataSource.setUsername();
     }
 }

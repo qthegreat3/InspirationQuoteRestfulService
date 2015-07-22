@@ -16,4 +16,10 @@ public class QuoteController {
 	{
 		return new Quote(id.incrementAndGet(), quote);	
 	}
+	
+	@RequestMapping(value="/quote", method=RequestMethod.POST)
+	public Boolean enterQuote(@RequestBody Quote quote)
+	{
+		quote
+	}
 }

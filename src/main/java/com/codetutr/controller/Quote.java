@@ -11,6 +11,12 @@ public class Quote {
 		this.id = id;
 	}
 	
+	public Quote(String quote)
+	{
+		this.quote = quote;
+		this.id = -1;
+	}
+	
 	public long getId()
 	{
 		return this.id;
