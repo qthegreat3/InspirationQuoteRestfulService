@@ -1,6 +1,6 @@
 package com.codetutr.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 public class QuoteController {
 	
-	private final AtomicLong id = new AtomicLong();
+	private final AtomicInteger id = new AtomicInteger();
 	
 	@RequestMapping(value="/quote", method=RequestMethod.GET)
 	public Quote getQuote(@RequestParam(value="quote", defaultValue="Carpe Diem") String quote)

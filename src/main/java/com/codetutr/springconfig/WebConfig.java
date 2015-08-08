@@ -23,10 +23,13 @@ public class WebConfig {
     }
     
     @Bean
-    public BasicDataSource springDataSource(){
-    	BasicDataSource dataSource = new BasicDataSource();
+    public DataSource getDataSource(){
+    	DataSource dataSource = new DataSource();
     	dataSource.driverClassName("com.mysql.jdbc.Driver");    	
-    	dataSource.setUrl("jdbc:mysql@localhost:1521");
-    	dataSource.setUsername();
+    	dataSource.setUrl("jdbc:mysql@localhost:3306/inspiringquotedb");
+    	dataSource.setUsername("root");
+    	dataSource.setPassword("greatness");
+    	
+    	return dataSource;
     }
 }

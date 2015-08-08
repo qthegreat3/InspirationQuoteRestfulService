@@ -3,9 +3,9 @@ package com.codetutr.controller;
 public class Quote {
 
 	private final String quote;
-	private final long id;
+	private final int id;
 	
-	public Quote(long id, String quote)
+	public Quote(int id, String quote)
 	{
 		this.quote = quote;
 		this.id = id;
@@ -17,7 +17,7 @@ public class Quote {
 		this.id = -1;
 	}
 	
-	public long getId()
+	public int getId()
 	{
 		return this.id;
 	}
