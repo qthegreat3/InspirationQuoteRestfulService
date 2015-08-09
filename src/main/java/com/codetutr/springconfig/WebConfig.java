@@ -32,4 +32,9 @@ public class WebConfig {
     	
     	return dataSource;
     }
+    
+    @Bean
+    public QuoteDAO getQuoteDAO(){
+    	return new QuoteDAOImpl(getDataSource());
+    }
 }
