@@ -6,4 +6,6 @@ public interface QuoteDAO {
 	
 	public Quote getQuote(int id);
 	
+	public int numberOfRows();
+	
 }

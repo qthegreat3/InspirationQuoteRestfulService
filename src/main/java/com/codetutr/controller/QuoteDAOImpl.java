@@ -2,20 +2,25 @@ package com.codetutr.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
- 
+import java.sql.Statement;
+
 import javax.sql.DataSource;  
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+import sun.rmi.transport.Connection;
+
 public class QuoteDAOImpl implements QuoteDAO {
 
 	private JdbcTemplate jdbcTemplate;
+	private Datasource _datasource;
 	
 	public QuoteDAOImpl(Datasource datasource)
 	{
 		jdbcTemplate = new JdbcTemplate(datasource);
+		_datasource = datasource;
 	}
 	
 	@Override
@@ -33,12 +38,12 @@ public class QuoteDAOImpl implements QuoteDAO {
 		jdbcTemplate.query(sql, new ResultSetExtractor<Quote>()
 				{
 			        @Override
-			        public Contact extractData(ResultSet rs) throws SQLException,
+			        public Quote extractData(ResultSet rs) throws SQLException,
 			                DataAccessException {
 			            if (rs.next()) {
 			                Quote quote = new Quote();
 			                quote.setId(rs.getInt("id"));
-			                qupte.setQuote(rs.getString("quote"));			                
+			                quote.setQuote(rs.getString("quote"));			                
 			                return quote;
 			            }
 			 
@@ -46,5 +51,42 @@ public class QuoteDAOImpl implements QuoteDAO {
 			        }
 				
 				});
+	}
+	
+	@Override
+	public int numerOfRows(){
+		String sql = "SELECT COUNT(*) as rowCount from quotes";
+
+		Connection conn = null;
+		
+		int numberOfRows = 0;
+		
+		try {
+			conn = datasource.getConnection();
+			Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next())
+			{
+				numberOfRows = rs.getInt("rowCount");
+			}
+		}catch (Exception e)
+		{
+			
+		}
+		finally {
+			if (conn != null)
+			{
+				try {
+					conn.close();
+				}catch(Exception e)
+				{
+					
+				}
+			}
+		}
+		
+		return numberOfRows;
 	}
 }

@@ -17,6 +17,12 @@ public class Quote {
 		this.id = -1;
 	}
 	
+	public Quote()
+	{
+		this.quote = "";
+		this.id = -1;
+	}
+	
 	public int getId()
 	{
 		return this.id;
@@ -25,5 +31,15 @@ public class Quote {
 	public String getQuote()
 	{
 		return this.quote;
+	}
+	
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	
+	public void setQuote(string quote)
+	{
+		this.quote = quote;
 	}
 }
