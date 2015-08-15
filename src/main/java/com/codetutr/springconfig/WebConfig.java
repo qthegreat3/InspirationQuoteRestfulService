@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.codetutr.controller.QuoteDAO;
+import javax.sql.DataSource; 
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import com.codetutr.controller.QuoteDAOImpl;
 
 @Configuration
 @EnableWebMvc
@@ -23,8 +26,8 @@ public class WebConfig {
     
     @Bean
     public DataSource getDataSource(){
-    	DataSource dataSource = new DataSource();
-    	dataSource.driverClassName("com.mysql.jdbc.Driver");    	
+    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	dataSource.setDriverClassName("com.mysql.jdbc.Driver");    	
     	dataSource.setUrl("jdbc:mysql@localhost:3306/inspiringquotedb");
     	dataSource.setUsername("root");
     	dataSource.setPassword("greatness");

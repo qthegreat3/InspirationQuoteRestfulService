@@ -2,8 +2,8 @@ package com.codetutr.controller;
 
 public class Quote {
 
-	private final String quote;
-	private final int id;
+	private String quote;
+	private int id;
 	
 	public Quote(int id, String quote)
 	{
@@ -38,7 +38,7 @@ public class Quote {
 		this.id = id;
 	}
 	
-	public void setQuote(string quote)
+	public void setQuote(String quote)
 	{
 		this.quote = quote;
 	}

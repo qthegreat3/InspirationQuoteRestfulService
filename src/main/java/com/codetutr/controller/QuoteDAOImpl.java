@@ -10,14 +10,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
-import sun.rmi.transport.Connection;
+import java.sql.Connection;
 
 public class QuoteDAOImpl implements QuoteDAO {
 
 	private JdbcTemplate jdbcTemplate;
-	private Datasource _datasource;
+	private DataSource _datasource;
 	
-	public QuoteDAOImpl(Datasource datasource)
+	public QuoteDAOImpl(DataSource datasource)
 	{
 		jdbcTemplate = new JdbcTemplate(datasource);
 		_datasource = datasource;
@@ -35,7 +35,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 	public Quote getQuote(int id)
 	{
 		String sql = "Select * from quotes where " + " id = ?";
-		jdbcTemplate.query(sql, new ResultSetExtractor<Quote>()
+		return jdbcTemplate.query(sql, new ResultSetExtractor<Quote>()
 				{
 			        @Override
 			        public Quote extractData(ResultSet rs) throws SQLException,
@@ -54,7 +54,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 	}
 	
 	@Override
-	public int numerOfRows(){
+	public int numberOfRows(){
 		String sql = "SELECT COUNT(*) as rowCount from quotes";
 
 		Connection conn = null;
@@ -62,7 +62,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 		int numberOfRows = 0;
 		
 		try {
-			conn = datasource.getConnection();
+			conn = _datasource.getConnection();
 			Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			
 			ResultSet rs = st.executeQuery(sql);
