@@ -9,8 +9,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 public class QuoteDAOImpl implements QuoteDAO {
 
@@ -28,14 +30,24 @@ public class QuoteDAOImpl implements QuoteDAO {
 	{
         String sql = "INSERT INTO quotes (quote)"
                 + " VALUES (?)";
-        jdbcTemplate.update(sql, quote.getQuote());
+        jdbcTemplate.update(sql, new PreparedStatementSetter() {
+            public void setValues(PreparedStatement preparedStatement) throws
+            SQLException {
+              preparedStatement.setString(1, quote.getQuote());
+          }
+        });
 	}
 	
 	@Override
 	public Quote getQuote(int id)
 	{
 		String sql = "Select * from quotes where " + " id = ?";
-		return jdbcTemplate.query(sql, new ResultSetExtractor<Quote>()
+		return jdbcTemplate.query(sql, new PreparedStatementSetter() {
+            public void setValues(PreparedStatement preparedStatement) throws
+            SQLException {
+              preparedStatement.setInt(1, id);
+          }
+        }, new ResultSetExtractor<Quote>()
 				{
 			        @Override
 			        public Quote extractData(ResultSet rs) throws SQLException,

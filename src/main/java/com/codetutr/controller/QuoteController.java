@@ -26,15 +26,21 @@ public class QuoteController {
 		
 		int id = rand.nextInt(numberOfRows + 1);
 		
+		if (id < 1)
+		{
+			id = 1;
+		}
+		
 		Quote quote = quoteDAO.getQuote(id);
 		
 		return quote;	
 	}
 	
 	@RequestMapping(value="/quote", method=RequestMethod.POST)
-	public Boolean enterQuote(@RequestBody Quote quote)
+	public Boolean enterQuote(@RequestBody String quote)
 	{
-		quoteDAO.saveOrUpdate(quote);
+		Quote q = new Quote(quote);
+		quoteDAO.saveOrUpdate(q);
 		return true;
 	}
 }

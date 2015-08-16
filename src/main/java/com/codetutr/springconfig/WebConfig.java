@@ -28,7 +28,7 @@ public class WebConfig {
     public DataSource getDataSource(){
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
     	dataSource.setDriverClassName("com.mysql.jdbc.Driver");    	
-    	dataSource.setUrl("jdbc:mysql@localhost:3306/inspiringquotedb");
+    	dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/inspiringquotedb");
     	dataSource.setUsername("root");
     	dataSource.setPassword("greatness");
     	
