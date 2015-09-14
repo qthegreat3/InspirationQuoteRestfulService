@@ -1,0 +1,18 @@
+NOtes:
+
+   compile 'org.codehaus.jackson:jackson-core-asl:1.9.2'
+   compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.2'
+   compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
+   compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.1'
+   
+   for json response in jetty with Spring 4.1.4 otherwise get 406 not acceptable error becauase cant respond in Json
+
+For DigitalOcean Ubuntu 14.04, had to upgrade to 10/mo plan to install mysql
+
+couldnt make service so just started jetty by going to /opt/jetty and doing java -jar ....
+
+put my war file using winscp into webapps...named it root.war
+
+command to build: gradlew jettyRunWar
+
+then load up war
