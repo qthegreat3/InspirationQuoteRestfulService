@@ -16,15 +16,6 @@ import com.codetutr.controller.QuoteDAOImpl;
 
 public class WebConfig {
     @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver resolver =
-                    new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/view/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
-    
-    @Bean
     public DataSource getDataSource(){
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
     	dataSource.setDriverClassName("com.mysql.jdbc.Driver");    	
