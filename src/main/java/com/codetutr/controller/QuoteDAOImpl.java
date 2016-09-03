@@ -68,7 +68,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 			                return quote;
 			            }
 			 
-			            return null;
+			            return new Quote();
 			        }
 				
 				});
